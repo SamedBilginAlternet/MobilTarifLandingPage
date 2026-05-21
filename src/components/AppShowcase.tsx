@@ -88,8 +88,8 @@ export default function AppShowcase() {
     >
       {/* Sticky viewport */}
       <div
-        className="sticky top-0 h-screen flex items-center overflow-hidden"
-        style={{ backgroundColor: "#f8fafc" }}
+        className="sticky top-0 h-screen flex items-center"
+        style={{ backgroundColor: "#f8fafc", overflow: "hidden", maxWidth: "100vw" }}
       >
         {/* Pill particle background */}
         <div className="absolute inset-0 pointer-events-none">
@@ -158,11 +158,8 @@ export default function AppShowcase() {
             </div>
 
             {/* ── Right: phone + image sequence ── */}
-            <div className="flex-shrink-0 flex justify-center">
-              <div
-                className="phone-float"
-                style={{ animationPlayState: "running" }}
-              >
+            <div className="hidden sm:flex flex-shrink-0 justify-center">
+              <div className="phone-float">
                 <div className="phone-mockup">
                   <div className="phone-screen">
                     <ImageSequence
