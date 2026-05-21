@@ -93,6 +93,7 @@ export default function Hero() {
 
           {/* Right: Phone Mockup */}
           <div className="flex-shrink-0 flex justify-center">
+            <div className="phone-float">
             <div className="phone-mockup">
               <div className="phone-screen">
                 {/* Status Bar */}
@@ -126,7 +127,7 @@ export default function Hero() {
                 {/* Medication Cards */}
                 <div className="px-4 pt-3 flex flex-col gap-2.5 flex-1 overflow-hidden">
                   {/* Card 1 */}
-                  <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-2xl border border-blue-100">
+                  <div className="phone-card-1 flex items-center gap-3 p-3 bg-blue-50 rounded-2xl border border-blue-100">
                     <div className="w-3 h-3 rounded-full bg-green-500 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-gray-900 truncate">
@@ -143,7 +144,7 @@ export default function Hero() {
                   </div>
 
                   {/* Card 2 */}
-                  <div className="flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
+                  <div className="phone-card-2 flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
                     <div className="w-3 h-3 rounded-full bg-orange-400 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-gray-900 truncate">
@@ -160,7 +161,7 @@ export default function Hero() {
                   </div>
 
                   {/* Card 3 */}
-                  <div className="flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
+                  <div className="phone-card-3 flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
                     <div className="w-3 h-3 rounded-full bg-purple-400 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-gray-900 truncate">
@@ -186,15 +187,13 @@ export default function Hero() {
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: "66%",
-                        backgroundColor: "#2c76be",
-                      }}
+                      className="progress-bar-fill h-full rounded-full"
+                      style={{ backgroundColor: "#2c76be" }}
                     />
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useRef } from "react";
+
 const steps = [
   {
     number: "1",
@@ -18,11 +21,39 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const all: { el: Element; delay: number }[] = [];
+
+    if (headingRef.current) all.push({ el: headingRef.current, delay: 0 });
+    stepRefs.current.forEach((el, i) => {
+      if (el) all.push({ el, delay: 150 + i * 150 });
+    });
+
+    const observers = all.map(({ el, delay }) => {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => el.classList.add("visible"), delay);
+            obs.disconnect();
+          }
+        },
+        { threshold: 0.12 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   return (
     <section id="nasil-calisir" className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div ref={headingRef} className="reveal text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             3 Adımda Başlayın
           </h2>
@@ -41,10 +72,11 @@ export default function HowItWorks() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 relative z-10">
-            {steps.map((step) => (
+            {steps.map((step, i) => (
               <div
                 key={step.number}
-                className="flex flex-col items-center text-center"
+                ref={(el) => { stepRefs.current[i] = el; }}
+                className="reveal flex flex-col items-center text-center"
               >
                 {/* Numbered Circle */}
                 <div
@@ -54,12 +86,10 @@ export default function HowItWorks() {
                   {step.number}
                 </div>
 
-                {/* Title */}
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {step.title}
                 </h3>
 
-                {/* Description */}
                 <p className="text-gray-600 leading-relaxed max-w-xs">
                   {step.description}
                 </p>

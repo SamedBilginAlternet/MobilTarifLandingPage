@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useRef } from "react";
+
 const testimonials = [
   {
     quote:
@@ -26,11 +29,38 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const all: { el: Element; delay: number }[] = [];
+    if (headingRef.current) all.push({ el: headingRef.current, delay: 0 });
+    cardRefs.current.forEach((el, i) => {
+      if (el) all.push({ el, delay: 120 + i * 110 });
+    });
+
+    const observers = all.map(({ el, delay }) => {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => el.classList.add("visible"), delay);
+            obs.disconnect();
+          }
+        },
+        { threshold: 0.12 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   return (
     <section style={{ backgroundColor: "#f0f2f5" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         {/* Heading */}
-        <div className="text-center mb-14">
+        <div ref={headingRef} className="reveal text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Kullanıcılarımız Ne Diyor?
           </h2>
@@ -44,7 +74,8 @@ export default function Testimonials() {
           {testimonials.map((t, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+              ref={(el) => { cardRefs.current[index] = el; }}
+              className="reveal bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
               {/* Stars */}
               <div className="flex gap-0.5 mb-4" aria-label="5 yıldız">
