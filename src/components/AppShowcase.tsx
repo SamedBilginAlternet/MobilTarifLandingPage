@@ -1,101 +1,178 @@
 "use client";
+import { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import ImageSequence, { ImageItem } from "./ImageSequence";
 
-// Placeholder frames — replace with real app screenshots.
-// For best results: 30–100 sequential JPEG images, same dimensions.
-const W = 390;
-const H = 844;
-
-function makeFrames(): ImageItem[] {
-  const frames: ImageItem[] = [];
-
-  // Simulate 24 frames cycling through 4 "screen" states with colour shifts
-  const screens = [
-    { bg: "e8f0fb", fg: "2c76be", label: "Ana+Ekran" },
-    { bg: "e8f0fb", fg: "2c76be", label: "Ilaçlarım" },
-    { bg: "fff3e0", fg: "f57c00", label: "Hatirlatma" },
-    { bg: "e8f5e9", fg: "388e3c", label: "Alinmis+Doz" },
-    { bg: "fce4ec", fg: "c2185b", label: "Reçete" },
-    { bg: "ede7f6", fg: "512da8", label: "Takvim" },
-    { bg: "e0f7fa", fg: "00838f", label: "Paylasim" },
-    { bg: "e8f0fb", fg: "2c76be", label: "Profil" },
-  ];
-
-  screens.forEach((s, si) => {
-    // 3 frames per screen state for smooth-ish transition
-    for (let f = 0; f < 3; f++) {
-      frames.push({
-        src: `https://placehold.co/${W}x${H}/${s.bg}/${s.fg}?text=${s.label}`,
-        alt: `${s.label} ekranı`,
-      });
-    }
-  });
-
-  return frames;
-}
-
-const frames = makeFrames();
+const PillParticlesScene = dynamic(() => import("./PillParticlesScene"), {
+  ssr: false,
+});
 
 const steps = [
-  { heading: "Ana Ekran", body: "Günlük ilaç planınıza tek bakışta ulaşın." },
-  { heading: "Hatırlatmalar", body: "Zamanlı alarmlar hiçbir dozu kaçırmanıza izin vermez." },
-  { heading: "Reçete Arşivi", body: "Tüm reçeteleriniz şifreli olarak cebinizde." },
-  { heading: "Aile Paylaşımı", body: "Sevdiklerinizin sağlığını uzaktan takip edin." },
+  {
+    number: 1,
+    heading: "Ana Ekran",
+    body: "Günlük ilaç planınıza tek bakışta ulaşın.",
+    accent: "#2c76be",
+    bg: "e8f0fb",
+    fg: "2c76be",
+    label: "Ana+Ekran",
+  },
+  {
+    number: 2,
+    heading: "Hatırlatmalar",
+    body: "Zamanlı alarmlar hiçbir dozu kaçırmanıza izin vermez.",
+    accent: "#f57c00",
+    bg: "fff3e0",
+    fg: "f57c00",
+    label: "Hatırlatmalar",
+  },
+  {
+    number: 3,
+    heading: "Reçete Arşivi",
+    body: "Tüm reçeteleriniz şifreli olarak cebinizde.",
+    accent: "#c2185b",
+    bg: "fce4ec",
+    fg: "c2185b",
+    label: "Reçete+Arşivi",
+  },
+  {
+    number: 4,
+    heading: "Aile Paylaşımı",
+    body: "Sevdiklerinizin sağlığını uzaktan takip edin.",
+    accent: "#388e3c",
+    bg: "e8f5e9",
+    fg: "388e3c",
+    label: "Aile+Paylaşımı",
+  },
 ];
 
+// 4 distinct frames — one per step (replace with real screenshots)
+const frames: ImageItem[] = steps.map((s) => ({
+  src: `https://placehold.co/390x844/${s.bg}/${s.fg}?text=${s.label}`,
+  alt: s.heading,
+}));
+
+const SECTION_ID = "app-showcase";
+// Each step occupies 1 viewport of scroll → 4 steps = 4 × 100vh
+const TOTAL_VH = 400;
+
 export default function AppShowcase() {
+  const [activeStep, setActiveStep] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const scrolled = -rect.top;
+      const total = el.scrollHeight - window.innerHeight;
+      if (total <= 0) return;
+      const progress = Math.max(0, Math.min(1, scrolled / total));
+      setActiveStep(Math.min(steps.length - 1, Math.floor(progress * steps.length)));
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const step = steps[activeStep];
+
   return (
     <section
-      id="app-showcase"
+      id={SECTION_ID}
+      ref={sectionRef}
       className="relative"
-      style={{ height: "400vh" }}
+      style={{ height: `${TOTAL_VH}vh` }}
     >
-      {/* Sticky wrapper */}
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      {/* Sticky viewport */}
+      <div
+        className="sticky top-0 h-screen flex items-center overflow-hidden"
+        style={{ backgroundColor: "#f8fafc" }}
+      >
+        {/* Pill particle background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <PillParticlesScene />
+        </div>
 
-            {/* Left: copy that fades per scroll step */}
-            <div className="flex-1 space-y-6">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
+
+            {/* ── Left: step text ── */}
+            <div className="flex-1 text-center lg:text-left">
+              {/* Section label */}
               <p
-                className="text-sm font-semibold uppercase tracking-widest"
+                className="text-xs font-bold uppercase tracking-widest mb-4"
                 style={{ color: "#2c76be" }}
               >
                 Uygulamayı Keşfet
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                Her Adımda <br />
+
+              {/* Heading */}
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+                Her Adımda
+                <br />
                 <span style={{ color: "#2c76be" }}>Yanınızda</span>
               </h2>
-              <ul className="space-y-4">
-                {steps.map((s, i) => (
-                  <li key={i} className="flex gap-3">
-                    <span
-                      className="flex-shrink-0 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center mt-0.5"
-                      style={{ backgroundColor: "#2c76be" }}
-                    >
-                      {i + 1}
-                    </span>
-                    <div>
-                      <p className="font-semibold text-gray-900">{s.heading}</p>
-                      <p className="text-sm text-gray-600">{s.body}</p>
-                    </div>
-                  </li>
+
+              {/* Step info — crossfades on activeStep change */}
+              <div
+                key={activeStep}
+                className="mt-8"
+                style={{
+                  animation: "stepFadeIn 0.4s ease both",
+                }}
+              >
+                <div className="flex items-center gap-3 justify-center lg:justify-start mb-3">
+                  <span
+                    className="w-9 h-9 rounded-full text-white font-bold text-sm flex items-center justify-center flex-shrink-0 shadow-md transition-colors duration-300"
+                    style={{ backgroundColor: step.accent }}
+                  >
+                    {step.number}
+                  </span>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {step.heading}
+                  </h3>
+                </div>
+                <p className="text-gray-600 text-base leading-relaxed max-w-xs mx-auto lg:mx-0">
+                  {step.body}
+                </p>
+              </div>
+
+              {/* Progress dots */}
+              <div className="flex gap-2.5 mt-10 justify-center lg:justify-start">
+                {steps.map((_, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: i === activeStep ? 24 : 8,
+                      height: 8,
+                      backgroundColor:
+                        i === activeStep ? step.accent : "#d1d5db",
+                    }}
+                  />
                 ))}
-              </ul>
+              </div>
             </div>
 
-            {/* Right: phone frame + image sequence canvas */}
+            {/* ── Right: phone + image sequence ── */}
             <div className="flex-shrink-0 flex justify-center">
-              <div className="phone-mockup">
-                <div className="phone-screen">
-                  <ImageSequence
-                    images={frames}
-                    scrollBehavior="scrollSection"
-                    sectionId="app-showcase"
-                    smoothing={0.12}
-                    preloadImages={true}
-                  />
+              <div
+                className="phone-float"
+                style={{ animationPlayState: "running" }}
+              >
+                <div className="phone-mockup">
+                  <div className="phone-screen">
+                    <ImageSequence
+                      images={frames}
+                      scrollBehavior="scrollSection"
+                      sectionId={SECTION_ID}
+                      smoothing={0.08}
+                      preloadImages
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,6 +180,13 @@ export default function AppShowcase() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes stepFadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }

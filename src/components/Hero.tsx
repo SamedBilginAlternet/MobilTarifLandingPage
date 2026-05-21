@@ -1,4 +1,10 @@
+"use client";
+import dynamic from "next/dynamic";
 import TypewriterEffect from "./TypewriterEffect";
+
+const PillParticles = dynamic(() => import("./PillParticlesScene"), {
+  ssr: false,
+});
 
 const heroWords = [
   { word: "Hiç Unutmayın" },
@@ -9,7 +15,8 @@ const heroWords = [
 
 export default function Hero() {
   return (
-    <section className="hero-gradient min-h-screen flex items-center pt-16">
+    <section className="hero-gradient min-h-screen flex items-center pt-16 relative overflow-hidden">
+      <PillParticles />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left: Copy */}

@@ -45,7 +45,8 @@ export default function ScrollReveal({
       ? "reveal-right"
       : "reveal-fade";
 
-  const Comp = Tag as React.ElementType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Comp = Tag as any;
   return (
     <Comp ref={ref} className={`${dirClass} ${className}`}>
       {children}
