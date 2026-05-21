@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import TypewriterEffect from "./TypewriterEffect";
+import GooglePlayIcon from "./icons/GooglePlayIcon";
 
 const PillParticles = dynamic(() => import("./PillParticlesScene"), {
   ssr: false,
@@ -71,15 +72,7 @@ export default function Hero() {
                 href="#"
                 className="flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:bg-gray-800 transition-colors"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M3.18 23.76c.3.17.64.22.98.14l12.38-12.38L12.76 8l-9.58 15.76zm17.83-10.67l-2.91-1.68-3.18 3.18 3.18 3.18 2.93-1.69c.84-.48.84-1.51-.02-1.99zM2.01 1.05C1.84 1.3 1.75 1.62 1.75 2v20c0 .38.09.7.26.95L14.09 12l-12.08-10.95zM16.56 3.9L4.16.14C3.82.06 3.48.11 3.18.28L14.76 12l1.8-8.1z" />
-                </svg>
+                <GooglePlayIcon size={20} />
                 Google Play&apos;den İndir
               </a>
             </div>
