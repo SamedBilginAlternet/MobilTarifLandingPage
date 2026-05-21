@@ -142,6 +142,18 @@ body {
   will-change: transform;
 }
 
+/* ── Phone flip-in animations ─────────────────────────────────── */
+@keyframes phone-flip-right {
+  from { transform: perspective(900px) rotateY(-88deg); opacity: 0; }
+  to   { transform: perspective(900px) rotateY(0deg);   opacity: 1; }
+}
+@keyframes phone-flip-left {
+  from { transform: perspective(900px) rotateY(88deg);  opacity: 0; }
+  to   { transform: perspective(900px) rotateY(0deg);   opacity: 1; }
+}
+.phone-flip-right { animation: phone-flip-right 0.75s cubic-bezier(0.34, 1.15, 0.64, 1) forwards; }
+.phone-flip-left  { animation: phone-flip-left  0.75s cubic-bezier(0.34, 1.15, 0.64, 1) forwards; }
+
 /* ── Phone screen card animations ─────────────────────────────── */
 @keyframes card-slide-in {
   from { opacity: 0; transform: translateX(14px); }
