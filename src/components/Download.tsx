@@ -1,3 +1,5 @@
+import TypewriterEffect from "./TypewriterEffect";
+
 export default function Download() {
   return (
     <section
@@ -10,7 +12,17 @@ export default function Download() {
         <div className="flex flex-col items-center text-center">
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 max-w-2xl">
-            Hemen İndirin, Ücretsiz Başlayın
+            Hemen İndirin,{" "}
+            <TypewriterEffect
+              words={[{ word: "Ücretsiz Başlayın" }, { word: "Sağlığınızı Koruyun" }, { word: "Fark Hissedin" }]}
+              typingSpeed={85}
+              deletingSpeed={50}
+              pauseDuration={2000}
+              cursorColor="rgba(255,255,255,0.8)"
+              cursorWidth={3}
+              cursorHeight={80}
+              textColor="white"
+            />
           </h2>
           <p className="text-xl text-blue-100 mb-12 max-w-lg">
             10.000&apos;den fazla kullanıcıya katılın ve sağlığınızı kontrol

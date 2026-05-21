@@ -1,3 +1,12 @@
+import TypewriterEffect from "./TypewriterEffect";
+
+const heroWords = [
+  { word: "Hiç Unutmayın" },
+  { word: "Takip Edin" },
+  { word: "Güvende Tutun" },
+  { word: "Paylaşın" },
+];
+
 export default function Hero() {
   return (
     <section className="hero-gradient min-h-screen flex items-center pt-16">
@@ -15,7 +24,17 @@ export default function Hero() {
             {/* H1 */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-6">
               İlaçlarınızı{" "}
-              <span style={{ color: "#2c76be" }}>Hiç Unutmayın</span>
+              <br className="hidden sm:block" />
+              <TypewriterEffect
+                words={heroWords}
+                typingSpeed={80}
+                deletingSpeed={50}
+                pauseDuration={1800}
+                cursorColor="#2c76be"
+                cursorWidth={3}
+                cursorHeight={80}
+                textColor="#2c76be"
+              />
             </h1>
 
             {/* Subtitle */}

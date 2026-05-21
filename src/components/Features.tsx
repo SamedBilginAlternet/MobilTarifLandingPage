@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import TypewriterEffect from "./TypewriterEffect";
 
 const features = [
   {
@@ -94,7 +95,17 @@ export default function Features() {
         {/* Heading */}
         <div className="text-center mb-16 reveal" ref={(el) => { if (el) { const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } }, { threshold: 0.1 }); obs.observe(el); } }}>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Neden MobilTarif?
+            Neden{" "}
+            <TypewriterEffect
+              words={[{ word: "MobilTarif?" }, { word: "Bizi Seçmelisiniz?" }, { word: "Fark Yaratıyoruz?" }]}
+              typingSpeed={90}
+              deletingSpeed={55}
+              pauseDuration={2200}
+              cursorColor="#2c76be"
+              cursorWidth={2}
+              cursorHeight={75}
+              textColor="#2c76be"
+            />
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Sağlığınızı yönetmek için ihtiyacınız olan her şey tek bir uygulamada.
