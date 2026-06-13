@@ -29,19 +29,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 flex-shrink-0">
+          <a href="#" className="flex items-center flex-shrink-0">
             <img
-              src="/mobiltarif-svg-2.svg"
-              alt="MobilTarif logo"
-              width={28}
-              height={45}
+              src="/mobiltarif-svg-1.svg"
+              alt="MobilTarif"
+              height={32}
+              style={{ height: "32px", width: "auto" }}
             />
-            <span
-              className="text-xl font-bold"
-              style={{ color: "#2c76be" }}
-            >
-              MobilTarif
-            </span>
           </a>
 
           {/* Desktop Nav */}
