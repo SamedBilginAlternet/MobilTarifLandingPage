@@ -30,25 +30,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 flex-shrink-0">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect
-                x="4"
-                y="10"
-                width="24"
-                height="12"
-                rx="6"
-                fill="#2c76be"
-              />
-              <rect x="14" y="4" width="4" height="24" rx="2" fill="#ffffff" />
-              <rect x="4" y="14" width="24" height="4" rx="2" fill="#ffffff" />
-            </svg>
+            <img
+              src="/mobiltarif-svg-2.svg"
+              alt="MobilTarif logo"
+              width={28}
+              height={45}
+            />
             <span
               className="text-xl font-bold"
               style={{ color: "#2c76be" }}
