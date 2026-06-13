@@ -12,7 +12,6 @@ export default function Footer() {
                 alt="MobilTarif logo"
                 width={22}
                 height={36}
-                style={{ filter: "brightness(0) invert(1)" }}
               />
               <span className="text-lg font-bold text-white">MobilTarif</span>
             </div>
