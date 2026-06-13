@@ -6,14 +6,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Logo + Tagline */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center mb-3">
               <img
-                src="/mobiltarif-svg-2.svg"
-                alt="MobilTarif logo"
-                width={22}
-                height={36}
+                src="/mobiltarif-svg-1.svg"
+                alt="MobilTarif"
+                style={{ height: "28px", width: "auto" }}
               />
-              <span className="text-lg font-bold text-white">MobilTarif</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
               Akıllı ilaç hatırlatma ve reçete yönetimi uygulaması.

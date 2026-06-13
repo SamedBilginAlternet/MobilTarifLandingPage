@@ -12,7 +12,7 @@ export default function Download() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div className="flex flex-col items-center text-center">
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 whitespace-nowrap">
             Hemen İndirin,{" "}
             <TypewriterEffect
               words={[{ word: "Ücretsiz Başlayın" }, { word: "Sağlığınızı Koruyun" }, { word: "Fark Hissedin" }]}
