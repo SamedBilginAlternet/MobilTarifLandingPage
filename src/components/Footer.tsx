@@ -7,18 +7,13 @@ export default function Footer() {
           {/* Logo + Tagline */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect x="4" y="10" width="24" height="12" rx="6" fill="#2c76be" />
-                <rect x="14" y="4" width="4" height="24" rx="2" fill="#ffffff" />
-                <rect x="4" y="14" width="24" height="4" rx="2" fill="#ffffff" />
-              </svg>
+              <img
+                src="/mobiltarif-svg-2.svg"
+                alt="MobilTarif logo"
+                width={22}
+                height={36}
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
               <span className="text-lg font-bold text-white">MobilTarif</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
