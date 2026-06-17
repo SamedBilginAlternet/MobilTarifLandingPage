@@ -3,6 +3,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import FeatureCarousel from "@/components/FeatureCarousel";
+import ScreenGallery from "@/components/ScreenGallery";
 import HowItWorks from "@/components/HowItWorks";
 import AppShowcase from "@/components/AppShowcase";
 import AppPreview from "@/components/AppPreview";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Features />
         <FeatureCarousel />
+        <ScreenGallery />
         <HowItWorks />
         <AppShowcase />
         <AppPreview />
