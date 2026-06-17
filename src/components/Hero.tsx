@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import TypewriterEffect from "./TypewriterEffect";
 import GooglePlayIcon from "./icons/GooglePlayIcon";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/constants/storeLinks";
 
 const PillParticles = dynamic(() => import("./PillParticlesScene"), {
   ssr: false,
@@ -54,7 +55,9 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
               <a
-                href="#"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:bg-gray-800 transition-colors"
               >
                 <svg
@@ -69,7 +72,9 @@ export default function Hero() {
                 App Store&apos;dan İndir
               </a>
               <a
-                href="#"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gray-900 text-white font-semibold text-sm hover:bg-gray-800 transition-colors"
               >
                 <GooglePlayIcon size={20} />
@@ -115,102 +120,14 @@ export default function Hero() {
             <div className="phone-float">
             <div className="phone-mockup">
               <div className="phone-screen">
-                {/* Status Bar */}
-                <div className="flex items-center justify-between px-5 pt-14 pb-2">
-                  <span className="text-xs font-semibold text-gray-900">
-                    09:41
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true">
-                      <rect x="0" y="4" width="3" height="6" rx="1" fill="#1a1a1a" />
-                      <rect x="4" y="2.5" width="3" height="7.5" rx="1" fill="#1a1a1a" />
-                      <rect x="8" y="1" width="3" height="9" rx="1" fill="#1a1a1a" />
-                      <rect x="12" y="0" width="4" height="10" rx="1" fill="#1a1a1a" opacity="0.3" />
-                    </svg>
-                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-                      <rect x="1" y="2" width="12" height="8" rx="1.5" stroke="#1a1a1a" strokeWidth="1" />
-                      <rect x="2" y="3" width="8" height="6" rx="0.5" fill="#1a1a1a" />
-                      <path d="M14 4.5v3c.83-.5.83-2.5 0-3z" fill="#1a1a1a" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* App Header */}
-                <div className="px-4 pt-2 pb-3 border-b border-gray-100">
-                  <h2 className="text-base font-bold text-gray-900">
-                    Bugünkü İlaçlarım
-                  </h2>
-                  <p className="text-xs text-gray-500">21 Mayıs 2026</p>
-                </div>
-
-                {/* Medication Cards */}
-                <div className="px-4 pt-3 flex flex-col gap-2.5 flex-1 overflow-hidden">
-                  {/* Card 1 */}
-                  <div className="phone-card-1 flex items-center gap-3 p-3 bg-blue-50 rounded-2xl border border-blue-100">
-                    <div className="w-3 h-3 rounded-full bg-green-500 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-gray-900 truncate">
-                        Aspirin 100mg
-                      </p>
-                      <p className="text-xs text-gray-500">08:00</p>
-                    </div>
-                    <button
-                      className="px-2.5 py-1 text-xs font-semibold text-white rounded-lg flex-shrink-0"
-                      style={{ backgroundColor: "#2c76be" }}
-                    >
-                      Alındı ✓
-                    </button>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="phone-card-2 flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
-                    <div className="w-3 h-3 rounded-full bg-orange-400 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-gray-900 truncate">
-                        Metformin 850mg
-                      </p>
-                      <p className="text-xs text-gray-500">12:00</p>
-                    </div>
-                    <button
-                      className="px-2.5 py-1 text-xs font-semibold text-white rounded-lg flex-shrink-0"
-                      style={{ backgroundColor: "#2c76be" }}
-                    >
-                      Al
-                    </button>
-                  </div>
-
-                  {/* Card 3 */}
-                  <div className="phone-card-3 flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-200">
-                    <div className="w-3 h-3 rounded-full bg-purple-400 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-gray-900 truncate">
-                        Losartan 50mg
-                      </p>
-                      <p className="text-xs text-gray-500">20:00</p>
-                    </div>
-                    <button className="px-2.5 py-1 text-xs font-semibold text-gray-400 rounded-lg border border-gray-200 flex-shrink-0">
-                      Al
-                    </button>
-                  </div>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="px-4 pb-6 pt-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-medium text-gray-700">
-                      Günlük İlerleme
-                    </span>
-                    <span className="text-xs font-bold" style={{ color: "#2c76be" }}>
-                      2/3
-                    </span>
-                  </div>
-                  <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="progress-bar-fill h-full rounded-full"
-                      style={{ backgroundColor: "#2c76be" }}
-                    />
-                  </div>
-                </div>
+                <img
+                  src="/ilaclar.webp"
+                  alt="MobilTarif İlaçlarım ekranı"
+                  width={640}
+                  height={1308}
+                  fetchPriority="high"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </div>
             </div>
             </div>

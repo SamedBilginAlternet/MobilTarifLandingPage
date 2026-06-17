@@ -7,39 +7,7 @@ import TypewriterEffect from "./TypewriterEffect";
 // ─── Phone screens ────────────────────────────────────────────────────────────
 
 function ReminderScreen() {
-  return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <div className="pt-14 px-4 pb-3 border-b border-gray-100 bg-white">
-        <p className="text-[10px] text-gray-400">Bugün, 13 Haziran</p>
-        <h2 className="text-sm font-bold text-gray-900">Hatırlatmalar</h2>
-      </div>
-      <div className="flex flex-col gap-2 p-3">
-        {[
-          { name: "Aspirin 100mg", time: "08:00", dot: "bg-green-500", badge: "Alındı ✓", cls: "text-green-700 bg-green-50" },
-          { name: "Metformin 850mg", time: "12:00", dot: "bg-orange-400", badge: "10 dk. kaldı", cls: "text-orange-600 bg-orange-50" },
-          { name: "Losartan 50mg", time: "20:00", dot: "bg-gray-300", badge: "Al", cls: "text-white bg-[#2c76be]" },
-        ].map((item) => (
-          <div key={item.name} className="flex items-center gap-2.5 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-            <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${item.dot}`} />
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-gray-900 truncate">{item.name}</p>
-              <p className="text-[10px] text-gray-400">{item.time}</p>
-            </div>
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-lg whitespace-nowrap ${item.cls}`}>{item.badge}</span>
-          </div>
-        ))}
-        <div className="p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-[10px] text-gray-500">Günlük İlerleme</p>
-            <p className="text-[10px] font-bold" style={{ color: "#2c76be" }}>1/3</p>
-          </div>
-          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-            <div className="h-full rounded-full" style={{ backgroundColor: "#2c76be", width: "33%" }} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <img src="/hatirlatmalar.webp" alt="Hatırlatmalar ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
 }
 
 function SecurityScreen() {
@@ -68,145 +36,15 @@ function SecurityScreen() {
 }
 
 function PrescriptionScreen() {
-  return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <div className="pt-14 px-4 pb-3 border-b border-gray-100 bg-white flex items-center justify-between">
-        <div>
-          <p className="text-[10px] text-gray-400">Dijital Arşiv</p>
-          <h2 className="text-sm font-bold text-gray-900">Reçetelerim</h2>
-        </div>
-        <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-base font-bold leading-none" style={{ backgroundColor: "#2c76be" }}>+</div>
-      </div>
-      <div className="flex flex-col gap-2 p-3">
-        {[
-          { doc: "Dr. Ayşe Kaya", date: "15 Haz 2025", count: 3 },
-          { doc: "Dr. Mehmet Demir", date: "02 Mar 2025", count: 2 },
-          { doc: "Dr. Fatma Şahin", date: "10 Oca 2025", count: 4 },
-        ].map((rx) => (
-          <div key={rx.doc} className="flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-            <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#e8f0fb" }}>
-              <svg className="w-4 h-4" style={{ color: "#2c76be" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-gray-900 truncate">{rx.doc}</p>
-              <p className="text-[10px] text-gray-400">{rx.date}</p>
-            </div>
-            <span className="text-[10px] text-gray-500 whitespace-nowrap">{rx.count} ilaç</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <img src="/receteler.webp" alt="Reçetelerim ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
 }
 
 function FamilyScreen() {
-  return (
-    <div className="flex flex-col h-full bg-gray-50">
-      <div className="pt-14 px-4 pb-3 border-b border-gray-100 bg-white">
-        <p className="text-[10px] text-gray-400">Paylaşılan Profiller</p>
-        <h2 className="text-sm font-bold text-gray-900">Ailem</h2>
-      </div>
-      <div className="flex flex-col gap-2 p-3">
-        {[
-          { name: "Ayşe A.", role: "Anne", initials: "AA", ok: true, note: "3 ilaç güncel" },
-          { name: "Mehmet A.", role: "Baba", initials: "MA", ok: false, note: "1 ilaç atlandı" },
-          { name: "Ali A.", role: "Kardeş", initials: "AL", ok: true, note: "2 ilaç güncel" },
-        ].map((member) => (
-          <div key={member.name} className="flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style={{ backgroundColor: "#2c76be" }}>
-              {member.initials}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-gray-900">{member.name}</p>
-              <p className="text-[10px] text-gray-400">{member.role}</p>
-            </div>
-            <div className={`flex items-center gap-1 px-2 py-0.5 rounded-lg ${member.ok ? "bg-green-50" : "bg-orange-50"}`}>
-              <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${member.ok ? "bg-green-500" : "bg-orange-400"}`} />
-              <span className={`text-[9px] font-semibold whitespace-nowrap ${member.ok ? "text-green-700" : "text-orange-700"}`}>{member.note}</span>
-            </div>
-          </div>
-        ))}
-        <button className="flex items-center justify-center gap-2 p-2.5 rounded-2xl border-2 border-dashed border-gray-200 text-[10px] text-gray-400 font-medium mt-1">
-          + Üye Ekle
-        </button>
-      </div>
-    </div>
-  );
+  return <img src="/paylasim-detayi.webp" alt="Aile paylaşımı ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
 }
 
 function CalendarScreen() {
-  const dayLabels = ["Pt", "Sa", "Ça", "Pe", "Cu", "Ct", "Pz"];
-  // June 2025 starts on Sunday → Mon-Sun grid: first 6 cols of row 0 are empty
-  const weeks: (number | null)[][] = [
-    [null, null, null, null, null, null, 1],
-    [2, 3, 4, 5, 6, 7, 8],
-    [9, 10, 11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20, 21, 22],
-    [23, 24, 25, 26, 27, 28, 29],
-    [30, null, null, null, null, null, null],
-  ];
-  const missed = [4, 8, 11];
-  const today = 13;
-
-  const status = (day: number | null) => {
-    if (day === null) return "empty";
-    if (day === today) return "today";
-    if (day > today) return "future";
-    if (missed.includes(day)) return "miss";
-    return "done";
-  };
-
-  return (
-    <div className="flex flex-col h-full bg-white">
-      <div className="pt-14 px-4 pb-2 border-b border-gray-100">
-        <p className="text-[10px] text-gray-400">İlaç Takvimi</p>
-        <h2 className="text-sm font-bold text-gray-900">Haziran 2025</h2>
-      </div>
-      <div className="p-3 flex-1">
-        <div className="grid grid-cols-7 mb-1">
-          {dayLabels.map((d) => (
-            <p key={d} className="text-center text-[9px] font-semibold text-gray-400">{d}</p>
-          ))}
-        </div>
-        {weeks.map((week, wi) => (
-          <div key={wi} className="grid grid-cols-7 mb-0.5">
-            {week.map((day, di) => {
-              const s = status(day);
-              return (
-                <div key={di} className="flex flex-col items-center gap-0.5 py-0.5 min-h-[22px]">
-                  {s !== "empty" && (
-                    <>
-                      <span className={`text-[9px] leading-none ${s === "today" ? "font-bold text-[#2c76be]" : "text-gray-500"}`}>{day}</span>
-                      <div className={`w-2.5 h-2.5 rounded-full ${s === "done" ? "bg-green-400" : s === "miss" ? "bg-red-400" : s === "today" ? "bg-[#2c76be]" : "bg-gray-200"}`} />
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        ))}
-        <div className="mt-2 p-2.5 bg-gray-50 rounded-xl">
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-[10px] text-gray-500">Bu ay ilerleme</p>
-            <p className="text-[10px] font-bold text-gray-700">10/13</p>
-          </div>
-          <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full rounded-full bg-green-400" style={{ width: "77%" }} />
-          </div>
-        </div>
-        <div className="flex gap-3 mt-2">
-          {[["bg-green-400", "Alındı"], ["bg-red-400", "Atlandı"], ["bg-[#2c76be]", "Bugün"]].map(([cls, label]) => (
-            <div key={label} className="flex items-center gap-1">
-              <div className={`w-2 h-2 rounded-full flex-shrink-0 ${cls}`} />
-              <span className="text-[9px] text-gray-500">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  return <img src="/alarmlar.webp" alt="Alarmlar ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
 }
 
 function BarcodeScreen() {
@@ -365,7 +203,7 @@ export default function Features() {
                     {f.icon}
                   </div>
                   <div className="flex-1 min-w-0 pt-0.5">
-                    <p className={`text-sm font-bold transition-colors ${active === i ? "text-gray-900" : "text-gray-500"}`}>
+                    <p className={`text-sm font-bold transition-colors ${active === i ? "text-gray-900" : "text-gray-600"}`}>
                       {f.title}
                     </p>
                     <div className={`overflow-hidden transition-all duration-300 ${active === i ? "max-h-16 opacity-100 mt-1" : "max-h-0 opacity-0"}`}>
@@ -397,19 +235,25 @@ export default function Features() {
             </div>
 
             {/* Dot indicators */}
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               {features.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => handleSelect(i)}
                   aria-label={features[i].title}
-                  className="transition-all duration-200 rounded-full"
-                  style={{
-                    width: active === i ? "20px" : "8px",
-                    height: "8px",
-                    backgroundColor: active === i ? "#2c76be" : "#cbd5e1",
-                  }}
-                />
+                  aria-current={active === i}
+                  className="flex items-center justify-center"
+                  style={{ width: "28px", height: "28px" }}
+                >
+                  <span
+                    className="block transition-all duration-200 rounded-full"
+                    style={{
+                      width: active === i ? "20px" : "8px",
+                      height: "8px",
+                      backgroundColor: active === i ? "#2c76be" : "#cbd5e1",
+                    }}
+                  />
+                </button>
               ))}
             </div>
           </div>
