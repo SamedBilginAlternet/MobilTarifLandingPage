@@ -75,15 +75,15 @@ function StepBlock({ step, index }: { step: typeof steps[0]; index: number }) {
       className="flex-shrink-0 flex justify-center"
       style={{ opacity: 0 }}
     >
-      <div className="phone-mockup">
-        <div className="phone-screen overflow-hidden">
-          <img
-            src={step.imageSrc}
-            alt={step.imageAlt}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </div>
-      </div>
+      <img
+        src={step.imageSrc}
+        alt={step.imageAlt}
+        width={600}
+        height={1237}
+        loading="lazy"
+        className="phone-shot"
+        style={{ width: "300px", maxWidth: "78vw" }}
+      />
     </div>
   );
 

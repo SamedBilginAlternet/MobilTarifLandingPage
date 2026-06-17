@@ -1,14 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TypewriterEffect from "./TypewriterEffect";
 
-// ─── Phone screens ────────────────────────────────────────────────────────────
-
-function ReminderScreen() {
-  return <img src="/hatirlatmalar.webp" alt="Hatırlatmalar ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
-}
+// ─── Coded phone screens (no real screenshot available) ─────────────────────────
 
 function SecurityScreen() {
   return (
@@ -33,18 +30,6 @@ function SecurityScreen() {
       </div>
     </div>
   );
-}
-
-function PrescriptionScreen() {
-  return <img src="/receteler.webp" alt="Reçetelerim ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
-}
-
-function FamilyScreen() {
-  return <img src="/paylasim-detayi.webp" alt="Aile paylaşımı ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
-}
-
-function CalendarScreen() {
-  return <img src="/alarmlar.webp" alt="Alarmlar ekranı" style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
 }
 
 function BarcodeScreen() {
@@ -75,7 +60,16 @@ function BarcodeScreen() {
 
 // ─── Feature data ─────────────────────────────────────────────────────────────
 
-const features = [
+type Feature = {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  src?: string;
+  alt?: string;
+  Coded?: () => ReactNode;
+};
+
+const features: Feature[] = [
   {
     title: "Akıllı Hatırlatmalar",
     description: "Günlük, haftalık, periyodik alarm sistemleri ile hiçbir dozu kaçırmayın.",
@@ -84,7 +78,8 @@ const features = [
         <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
       </svg>
     ),
-    Screen: ReminderScreen,
+    src: "/hatirlatmalar.webp",
+    alt: "Hatırlatmalar ekranı",
   },
   {
     title: "Uçtan Uca Şifreleme",
@@ -94,7 +89,7 @@ const features = [
         <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    Screen: SecurityScreen,
+    Coded: SecurityScreen,
   },
   {
     title: "Reçete Yönetimi",
@@ -104,7 +99,8 @@ const features = [
         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
       </svg>
     ),
-    Screen: PrescriptionScreen,
+    src: "/receteler.webp",
+    alt: "Reçetelerim ekranı",
   },
   {
     title: "Aile Paylaşımı",
@@ -114,7 +110,8 @@ const features = [
         <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
-    Screen: FamilyScreen,
+    src: "/paylasim-detayi.webp",
+    alt: "Aile paylaşımı ekranı",
   },
   {
     title: "Takvim Takibi",
@@ -124,7 +121,8 @@ const features = [
         <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
-    Screen: CalendarScreen,
+    src: "/alarmlar.webp",
+    alt: "Alarmlar ekranı",
   },
   {
     title: "Barkod Tarama",
@@ -134,7 +132,7 @@ const features = [
         <path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8H4a1 1 0 00-1 1v10a1 1 0 001 1h3M4 4h3a1 1 0 011 1v3M16 4h3a1 1 0 011 1v3" />
       </svg>
     ),
-    Screen: BarcodeScreen,
+    Coded: BarcodeScreen,
   },
 ];
 
@@ -155,7 +153,8 @@ export default function Features() {
     setTick((t) => t + 1);
   };
 
-  const ActiveScreen = features[active].Screen;
+  const activeFeature = features[active];
+  const Coded = activeFeature.Coded;
 
   return (
     <section id="ozellikler" style={{ backgroundColor: "#f0f2f5" }}>
@@ -215,23 +214,33 @@ export default function Features() {
             </div>
           </div>
 
-          {/* Phone mockup — right on desktop, top on mobile */}
+          {/* Phone screenshot — right on desktop, top on mobile */}
           <div className="flex-shrink-0 order-1 lg:order-2 flex flex-col items-center gap-4">
-            <div className="phone-mockup">
-              <div className="phone-screen overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active}
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -24 }}
-                    transition={{ duration: 0.22, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                  >
-                    <ActiveScreen />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+            <div className="phone-stage">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -24 }}
+                  transition={{ duration: 0.22, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  {activeFeature.src ? (
+                    <img
+                      src={activeFeature.src}
+                      alt={activeFeature.alt}
+                      className="phone-shot-fill"
+                    />
+                  ) : Coded ? (
+                    <div className="coded-phone">
+                      <div className="coded-phone-screen">
+                        <Coded />
+                      </div>
+                    </div>
+                  ) : null}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Dot indicators */}

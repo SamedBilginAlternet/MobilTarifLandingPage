@@ -18,26 +18,26 @@ export default function AppPreview() {
         {/* Phone Mockups */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12">
           {/* Left Phone: Hatırlatmalar */}
-          <div className="phone-mockup-sm">
-            <div className="phone-screen-sm">
-              <img
-                src="/hatirlatmalar.webp"
-                alt="Hatırlatmalar ekranı"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </div>
+          <img
+            src="/hatirlatmalar.webp"
+            alt="Hatırlatmalar ekranı"
+            width={600}
+            height={1237}
+            loading="lazy"
+            className="phone-shot"
+            style={{ width: "240px", maxWidth: "70vw" }}
+          />
 
           {/* Right Phone: Reçetelerim */}
-          <div className="phone-mockup-sm">
-            <div className="phone-screen-sm">
-              <img
-                src="/receteler.webp"
-                alt="Reçetelerim ekranı"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          </div>
+          <img
+            src="/receteler.webp"
+            alt="Reçetelerim ekranı"
+            width={600}
+            height={1237}
+            loading="lazy"
+            className="phone-shot"
+            style={{ width: "240px", maxWidth: "70vw" }}
+          />
         </div>
 
         {/* Download Buttons */}

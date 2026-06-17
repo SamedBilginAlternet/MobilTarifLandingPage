@@ -115,21 +115,18 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: Phone Mockup */}
+          {/* Right: Phone screenshot (frame baked into the image) */}
           <div className="flex-shrink-0 flex justify-center">
             <div className="phone-float">
-            <div className="phone-mockup">
-              <div className="phone-screen">
-                <img
-                  src="/ilaclar.webp"
-                  alt="MobilTarif İlaçlarım ekranı"
-                  width={640}
-                  height={1308}
-                  fetchPriority="high"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-            </div>
+              <img
+                src="/ilaclar.webp"
+                alt="MobilTarif İlaçlarım ekranı"
+                width={600}
+                height={1237}
+                fetchPriority="high"
+                className="phone-shot"
+                style={{ width: "300px", maxWidth: "78vw" }}
+              />
             </div>
           </div>
         </div>

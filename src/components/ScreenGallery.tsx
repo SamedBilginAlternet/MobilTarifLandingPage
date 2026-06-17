@@ -84,15 +84,17 @@ export default function ScreenGallery() {
           {screens.map((s, i) => (
             <div
               key={s.num}
-              className={`device ${i % 2 === 1 ? "device-raised" : ""} reveal ${inView ? "visible" : ""}`}
+              className={`device reveal ${inView ? "visible" : ""}`}
               style={{ transitionDelay: `${i * 90}ms` }}
             >
-              <div className="device-frame">
-                <div className="device-screen">
-                  <img src={s.img} alt={`${s.title} ekranı`} loading="lazy" />
-                </div>
-              </div>
-              <div className="device-shadow" />
+              <img
+                src={s.img}
+                alt={`${s.title} ekranı`}
+                width={600}
+                height={1237}
+                loading="lazy"
+                className={`gallery-shot ${i % 2 === 1 ? "is-raised" : ""}`}
+              />
 
               {/* Caption */}
               <div className="mt-5 text-center" style={{ width: "190px" }}>
