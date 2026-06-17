@@ -1,5 +1,6 @@
 import TypewriterEffect from "./TypewriterEffect";
 import GooglePlayIcon from "./icons/GooglePlayIcon";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/constants/storeLinks";
 
 export default function Download() {
   return (
@@ -33,7 +34,9 @@ export default function Download() {
           {/* Download Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-14">
             <a
-              href="#"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white font-bold text-base transition-colors hover:bg-gray-100"
               style={{ color: "#212529" }}
             >
@@ -49,7 +52,9 @@ export default function Download() {
               App Store&apos;dan İndir
             </a>
             <a
-              href="#"
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white font-bold text-base transition-colors hover:bg-gray-100"
               style={{ color: "#212529" }}
             >
