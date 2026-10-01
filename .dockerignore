@@ -1,0 +1,10 @@
+.git
+.next
+node_modules
+npm-debug.log*
+.env*
+store-assets
+Dockerfile
+.dockerignore
+README.md
+VIDEO-PLAN.md
