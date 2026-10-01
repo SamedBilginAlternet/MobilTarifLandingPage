@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/constants/site";
 
 export const dynamic = "force-static";
-
-const SITE_URL = "https://mobiltarif.netlify.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {

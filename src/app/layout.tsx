@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/constants/storeLinks";
-
-const SITE_URL = "https://mobiltarif.netlify.app";
+import { SITE_URL } from "@/constants/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

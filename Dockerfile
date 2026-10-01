@@ -5,6 +5,12 @@ FROM node:22-alpine AS build
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Public origin baked into canonical/OG/JSON-LD/robots/sitemap. Required, no
+# default: pass `--build-arg SITE_URL=https://...` (Coolify: build variable).
+# The build fails if it is missing (src/constants/site.ts).
+ARG SITE_URL
+ENV SITE_URL=$SITE_URL
+
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
